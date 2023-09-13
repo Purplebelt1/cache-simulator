@@ -1,6 +1,8 @@
 import xml.etree.ElementTree as ET
 from data_creation import read_list
 
+
+
 def read_inputs():
     tree = ET.parse('./input/conf.xml')
     root = tree.getroot()
@@ -10,8 +12,8 @@ def read_inputs():
     memory_size = root.find('memory_size').text.lower()
     elements.append(memory_size)
 
-    line_size = root.find('line_size').text.lower()
-    elements.append(line_size)
+    page_size = root.find('page_size').text.lower()
+    elements.append(page_size)
 
     cache_size = root.find('cache_size').text.lower()
     elements.append(cache_size)
@@ -27,6 +29,9 @@ def read_inputs():
     if mapping_type == 'direct' and k != 1:
         k = 1
         print ("Your k value had been overwritten to 1 due to your choice of direct mapping)
+
+    if cache_size/page_size < k:
+        raise ValueError()
 
     if k is None and mapping_type = 'set_associative':
         raise ValueError()
