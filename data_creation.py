@@ -1,5 +1,5 @@
 class read_item:
-    def __init__(self, is_hit = 0, addr, replace_loc = None):
+    def __init__(self, is_hit = False, addr, replace_loc = None):
         self.is_hit = is_hit
         self.addr = int(addr)
         self.replace_loc = replace_loc
@@ -10,8 +10,8 @@ class read_item:
         return self.addr
     def get_replace_loc(self):
         return self.replace_loc
-    def set_is_hit(self, bit):
-        self.is_hit = bit
+    def set_is_hit(self, boolean):
+        self.is_hit = boolean
         return self.is_hit
     def set_addr(self,addr):
         self.addr = addr
