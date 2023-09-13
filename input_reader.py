@@ -4,7 +4,7 @@ from data_creation import read_list
 
 
 def read_inputs():
-    tree = ET.parse('./input/conf.xml')
+    tree = ET.parse('./config.xml')
     root = tree.getroot()
     
     elements = []
