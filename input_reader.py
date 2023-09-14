@@ -30,10 +30,10 @@ def read_inputs():
     conversion_to_decimal(page_size)
 
     if memory_size % page_size != 0:
-        return ("Page size not applicable to current memory size")
+        raise ValueError ("Page size not applicable to current memory size")
 
     if (memory_size/page_size) % 2 != 0:
-        return("Memory size must be divisible by page size")
+        raise ValueError ("Memory size must be divisible by page size")
     
     elements.append(memory_size)
     elements.append(page_size)
@@ -50,7 +50,7 @@ def read_inputs():
     try:
         k = int(k)
     except:
-        return ("K must be an integer")
+        raise ValueError ("K must be an integer")
 
     if k is not None:
         elements.append(k)
