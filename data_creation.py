@@ -36,7 +36,7 @@ def data_creation(mem_len, number_of_reads):
     counter = 0
     while counter < number_of_reads:
         new_addr = random.randint(0,mem_len -1)
-        new_addr = 
+        new_addr = format(new_addr, '0' + str(bit) + 'b')
         read_object = readItem(new_addr)
         read_list.append(read_object)
     return read_list
