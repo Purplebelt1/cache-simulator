@@ -60,10 +60,10 @@ def read_inputs():
         print ("Your k value had been overwritten to 1 due to your choice of direct mapping")
 
     if cache_size/page_size < k:
-        raise ValueError()
+        raise ValueError("k must be less than the number of lines")
 
     if k is None and mapping_type == 'set_associative':
-        raise ValueError()
+        raise ValueError("K must have a value for set associative mapping")
 
     elements.append(read_list)
 
