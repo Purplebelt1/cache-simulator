@@ -3,18 +3,19 @@ from data_creation import read_list
 
 def conversion_to_decimal(x):
     byte_level = x[-2:]
+    print(byte_level)
     if byte_level == "BT":
         byte_level = 2
-    if byte_level == "KB":
-        byte_level = 2^10
-    if byte_level == "MB":
-        byte_level = 2^20
-    if byte_level == "GB":
-        byte_level = 2^30
+    elif byte_level == "KB":
+        byte_level = 2**10
+    elif byte_level == "MB":
+        byte_level = 2**20
+    elif byte_level == "GB":
+        byte_level = 2**30
     else:
         return ("Sizes must be in BT, KB, MB, or GB")
     
-    return (x[:-2] * byte_level)
+    return (int(x[:-2]) * byte_level)
 
 conversion_to_decimal("128MB")
 
