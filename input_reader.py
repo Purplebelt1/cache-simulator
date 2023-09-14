@@ -5,7 +5,7 @@ def conversion_to_decimal(x):
     byte_level = x[-2:]
     print(byte_level)
     if byte_level == "BT":
-        byte_level = 2
+        byte_level = 1
     elif byte_level == "KB":
         byte_level = 2**10
     elif byte_level == "MB":
@@ -46,6 +46,7 @@ def read_inputs():
     elements.append(mapping_type)
 
     k = root.find('k').text.lower()
+
     try:
         k = int(k)
     except:
