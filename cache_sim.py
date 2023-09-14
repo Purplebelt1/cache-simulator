@@ -1,6 +1,7 @@
 import math
 from data_creation import read_item
 
+
 def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
 
     block_num = mem_size/page_size
@@ -14,16 +15,33 @@ def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
 
     cache = init_cache(k, set_size)
 
+    for i in read_item_list:
+        set = find_set(cache, i,len_page_num, len_tag)
 
 
-def find_set(cache, item):
-    pass
+def find_set(cache, item, len_page_num, len_tag):
+
+    page_num = item.get_addr()[:len_page_num]
+    tag = item.get_addr()[len_page_num-len_tag:len_page_num]
+    offset = item.get_addr()[len_page_num:]
+
+    sets = cache.getChildren()
+    if len(sets) == 1:
+        return sets[0]
+    set = None
+
+    for i in sets:
+        if i.getName() == tag:
+            set = i
+            break
+    
+    return set
 
 
 def init_cache(k, set_size):
     cache = treeNode()
     for i in range(k):
-        new_set = treeNode("set")
+        new_set = treeNode(i.bin())
         cache.addChild("set")
         for j in range(set_size):
             line = treeNode(None)
@@ -32,12 +50,13 @@ def init_cache(k, set_size):
 
 
 class treeNode:
-    def __init__(self, name = 'root', children = None):
+    def __init__(self, name='root', children=None):
         self.__name = name
         self.__children = None
         if children:
             for i in children:
                 self.__addChild(i)
+
     def addChild(self, child):
         if isinstance(child, treeNode):
             self.__children.append(child)
@@ -47,6 +66,6 @@ class treeNode:
 
     def getName(self):
         return self.__name
-    
+
     def getChildren(self):
         return self.__children
