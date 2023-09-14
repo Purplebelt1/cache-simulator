@@ -3,27 +3,34 @@ import random
 
 read_list = []
 
+
 class readItem:
-    def __init__(self, addr, replace_loc = None, is_hit = False,):
+    def __init__(self, addr, replace_loc=None, is_hit=False):
         self.is_hit = is_hit
         self.addr = int(addr)
         self.replace_loc = replace_loc
 
-    def get_is_hit(self):
+    def getIsHit(self):
         return self.is_hit
-    def get_addr(self):
+
+    def getAddr(self):
         return self.addr
-    def get_replace_loc(self):
+
+    def getReplaceLoc(self):
         return self.replace_loc
-    def set_is_hit(self, boolean):
+
+    def setIsHit(self, boolean):
         self.is_hit = boolean
         return self.is_hit
-    def set_addr(self,addr):
+
+    def setAddr(self, addr):
         self.addr = addr
         return self.addr
-    def set_replace_loc(self,location):
+
+    def setReplaceLoc(self, location):
         self.replace_loc = location
         return self.replace_loc
+
 
 def data_creation(mem_len, number_of_reads):
     counter = 0
