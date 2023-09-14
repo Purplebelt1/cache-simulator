@@ -17,8 +17,6 @@ def conversion_to_decimal(x):
     
     return (int(x[:-2]) * byte_level)
 
-conversion_to_decimal("128MB")
-
 def read_inputs():
     tree = ET.parse('./config.xml')
     root = tree.getroot()
@@ -26,14 +24,22 @@ def read_inputs():
     elements = []
 
     memory_size = root.find('memory_size').text.lower()
-
-
-    elements.append(memory_size)
+    conversion_to_decimal(memory_size)
 
     page_size = root.find('page_size').text.lower()
+    conversion_to_decimal(page_size)
+
+    if memory_size % page_size != 0:
+        return ("Page size not applicable to current memory size")
+
+    if (memory_size/page_size) % 2 != 0:
+        return("Memory size must be divisible by page size")
+    
+    elements.append(memory_size)
     elements.append(page_size)
 
     cache_size = root.find('cache_size').text.lower()
+    conversion_to_decimal(cache_size)
     elements.append(cache_size)
 
     mapping_type = root.find('mapping_type').text.lower()
