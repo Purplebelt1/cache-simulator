@@ -19,3 +19,21 @@ class read_item:
     def set_replace_loc(self,location):
         self.replace_loc = location
         return self.replace_loc
+
+def data_creation(mem_len, number_of_reads):
+    counter = 0
+    while counter < number_of_reads:
+        new_addr = create_address(mem_len)
+        read_object = readItem(new_addr)
+        read_list.append(read_object)
+    return read_list
+
+
+def create_address(mem_len):
+    addr = ""
+    addr_len = math.log2(mem_len)
+    for i in range(addr_len):
+        temp = str(random.randint(0, 1))
+        addr += temp
+    final_addr = int(addr)
+    return final_addr
