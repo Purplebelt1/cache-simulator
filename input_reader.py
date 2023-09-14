@@ -69,4 +69,5 @@ def read_inputs():
 
     return elements
 
-read_inputs()
+if __name__ == "__main__":
+    read_inputs()
