@@ -37,12 +37,21 @@ def find_set(cache, item, len_page_num, len_tag):
     
     return set
 
+def binary(n, bit):
+    return format(n, '0' + str(bit) + 'b')
 
 def init_cache(k, set_size):
     cache = treeNode()
+    if k == 1:
+        new_set = treeNode("set")
+        cache.addChild(new_set)
+        for j in range(set_size):
+            line = treeNode(None)
+            new_set.addChild(line)
+        return cache
     for i in range(k):
-        new_set = treeNode(i.bin())
-        cache.addChild("set")
+        new_set = treeNode(binary(i, k-1))
+        cache.addChild(new_set)
         for j in range(set_size):
             line = treeNode(None)
             new_set.addChild(line)
