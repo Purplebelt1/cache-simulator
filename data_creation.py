@@ -35,7 +35,8 @@ class readItem:
 def data_creation(mem_len, number_of_reads):
     counter = 0
     while counter < number_of_reads:
-        new_addr = create_address(mem_len)
+        new_addr = random.randint(0,mem_len -1)
+        new_addr = 
         read_object = readItem(new_addr)
         read_list.append(read_object)
     return read_list
