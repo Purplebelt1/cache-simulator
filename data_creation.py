@@ -1,3 +1,8 @@
+import math
+import random
+
+read_list = []
+
 class readItem:
     def __init__(self, is_hit = False, addr, replace_loc = None):
         self.is_hit = is_hit
