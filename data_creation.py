@@ -4,7 +4,7 @@ import random
 read_list = []
 
 class readItem:
-    def __init__(self, is_hit = False, addr, replace_loc = None):
+    def __init__(self, addr, replace_loc = None, is_hit = False,):
         self.is_hit = is_hit
         self.addr = int(addr)
         self.replace_loc = replace_loc
