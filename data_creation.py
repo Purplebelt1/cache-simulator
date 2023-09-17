@@ -9,6 +9,8 @@ class readItem:
         self.is_hit = is_hit
         self.addr = int(addr)
         self.replace_loc = replace_loc
+        self.last_read = 0
+        self.time_added = 0
 
     def getIsHit(self):
         return self.is_hit
@@ -30,6 +32,18 @@ class readItem:
     def setReplaceLoc(self, location):
         self.replace_loc = location
         return self.replace_loc
+    
+    def getLastRead(self):
+        return self.last_read
+    
+    def setLastRead(self, value):
+        self.last_read = value
+
+    def getTimeAdded(self):
+        return self.time_added
+    
+    def setTimeAdded(self, value):
+        self.time_added = value
 
 
 def data_creation(mem_len, number_of_reads):
