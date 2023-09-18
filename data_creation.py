@@ -2,7 +2,6 @@ import math
 import random
 
 
-
 class readItem:
     def __init__(self, addr, replace_loc=None, is_hit=False):
         self.is_hit = is_hit

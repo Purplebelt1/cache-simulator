@@ -68,6 +68,8 @@ def read_inputs():
         
     elements.append(k)  
 
+    
+
     num_reads = root.find('num_reads').text.lower()
 
     read_list = data_creation.data_creation(memory_size, num_reads)
