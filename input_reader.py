@@ -48,7 +48,7 @@ def read_inputs():
     k = root.find('k').text.lower()
 
     if k is None:
-        elements.append(k)
+        pass
 
     else:
         try:
@@ -59,13 +59,14 @@ def read_inputs():
         if mapping_type == 'direct' and k != 1:
             k = 1
             print ("Your k value had been overwritten to 1 due to your choice of direct mapping")
-            elements.append(k)
 
         if cache_size/page_size < k:
             raise ValueError("k must be less than the number of lines")
 
         if k is None and mapping_type == 'set_associative':
             raise ValueError("K must have a value for set associative mapping")
+        
+    elements.append(k)     
 
     elements.append(read_list)
 
