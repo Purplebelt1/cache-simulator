@@ -69,7 +69,7 @@ def read_inputs():
         if k is None and mapping_type == 'set_associative':
             raise ValueError("K must have a value for set associative mapping")
 
-        elements.append(read_list)
+    elements.append(read_list)
 
     return elements
 
