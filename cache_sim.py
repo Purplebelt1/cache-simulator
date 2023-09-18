@@ -25,7 +25,7 @@ def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
         line = find_line(set, i)
         if line:
             on_hit(i, line, increment)
-            read_item.setIsHit(True)
+            i.setIsHit(True)
         else:
             on_miss(set)
         increment += 1
