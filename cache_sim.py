@@ -2,7 +2,7 @@ import math
 from data_creation import readItem
 from replacement_algorithms import first_in_first_out, least_recently_used
 
-def cache_sim(mem_size, cache_size, page_size, mapping_type, k, algorithm. read_item_list):
+def cache_sim(mem_size, cache_size, page_size, mapping_type, k, algorithm, read_item_list):
 #def cache_sim(read_item_list, mem_size, page_size, cache_size, k, algorithm):
 
     block_num = mem_size/page_size
@@ -24,30 +24,32 @@ def cache_sim(mem_size, cache_size, page_size, mapping_type, k, algorithm. read_
         set_num = i.getAddr()[len_page_num-len_set_num:len_page_num]
         set = find_set(cache, set_num)
         line = find_line(set, i)
+
+        # On hit
         if line:
-            on_hit(i, line, increment)
             i.setIsHit(True)
+            was_hit = line.getName()
+            was_hit.setLastRead(increment)
+
+        # On miss
         else:
-            on_miss(set, algorithm, i)
+            match algorithm:
+                case "fifo":
+                    index = first_in_first_out(set)
+                case "lru":
+                    index = least_recently_used(set)
+            old = set.getChildren()[index]
+            if old.getName != None:
+                i.setReplaceLoc(old.getName)
+            old.setName(i)
+            i.setTimeAdded(increment)
+            i.setLastRead(increment)
         increment += 1
+    return read_item_list
 
 
 
-def on_hit(request, line, time):
-    request.setIsHit(True)
-    was_hit = line.getName()
-    was_hit.setLastRead(time)
-    
 
-
-
-def on_miss(set, algoritm, new):
-    match algoritm:
-        case "fifo":
-            index = first_in_first_out(set)
-        case "lru":
-            index = least_recently_used(set)
-    set.getChildren()[index].setName(new)
 
 
 
