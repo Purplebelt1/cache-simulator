@@ -71,7 +71,7 @@ def read_inputs():
     elements.append(k)  
 
     algorithm = root.find('algorithm').text.lower()
-    elements.appned(algorithm)
+    elements.append(algorithm)
 
     num_reads = root.find('num_reads').text.lower()
     try:
