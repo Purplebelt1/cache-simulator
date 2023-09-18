@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from data_creation import read_list
+import data_creation
 
 def conversion_to_decimal(x):
     byte_level = x[-2:]
@@ -66,9 +66,13 @@ def read_inputs():
         if k is None and mapping_type == 'set_associative':
             raise ValueError("K must have a value for set associative mapping")
         
-    elements.append(k)     
+    elements.append(k)  
 
-    elements.append(read_list)
+    num_reads = root.find('num_reads').text.lower()
+
+    data_creation.data_creation(memory_size, num_reads)
+
+    elements.append(data_creation.read_list)
 
     return elements
 

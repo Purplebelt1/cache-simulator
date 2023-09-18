@@ -5,4 +5,5 @@
     <cache_size>64KB</cache_size>
     <mapping_type>direct</mapping_type>
     <k></k>
+    <num_reads>10000</num_reads>
 </configuration>
