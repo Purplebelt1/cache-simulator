@@ -2,7 +2,7 @@ import math
 from data_creation import readItem
 from replacement_algorithms import first_in_first_out, least_recently_used
 
-def cache_sim(mem_size, cache_size, page_size, mapping_type, k, read_item_list):
+def cache_sim(mem_size, cache_size, page_size, mapping_type, k, algorithm. read_item_list):
 #def cache_sim(read_item_list, mem_size, page_size, cache_size, k, algorithm):
 
     block_num = mem_size/page_size
