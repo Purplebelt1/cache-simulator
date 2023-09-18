@@ -1,9 +1,9 @@
-from cache_sim import final_read_list
+from cache_sim import read_item_list
 
 hit_ratio = 0
 replacement_count = 0
 
-for i in final_read_list:
+for i in read_item_list:
     if i.getIsHit == True:
         hit_ratio += 1
     if i.getReplaceLoc != None:
@@ -11,4 +11,5 @@ for i in final_read_list:
     else:
         pass
 
-hit_ratio = hit_ratio/len(final_read_list)
+hit_ratio = hit_ratio/len(read_item_list)
+
