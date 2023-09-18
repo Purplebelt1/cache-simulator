@@ -1,5 +1,5 @@
 import math
-from data_creation import read_item
+from data_creation import readItem
 
 
 def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
