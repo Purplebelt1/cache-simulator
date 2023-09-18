@@ -14,4 +14,3 @@ for i in read_item_list:
 
 hit_ratio = hit_ratio/len(read_item_list)
 spacial_locality = counter(read_item_list)
-
