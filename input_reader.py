@@ -70,9 +70,9 @@ def read_inputs():
 
     num_reads = root.find('num_reads').text.lower()
 
-    data_creation.data_creation(memory_size, num_reads)
+    read_list = data_creation.data_creation(memory_size, num_reads)
 
-    elements.append(data_creation.read_list)
+    elements.append(read_list)
 
     return elements
 
