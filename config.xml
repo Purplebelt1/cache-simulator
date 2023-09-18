@@ -1,0 +1,8 @@
+<configuration>
+    <replacement_algorithm>fifo</replacement_algorithm>
+    <memory_size>128MB</memory_size>
+    <page_size>4KB</page_size>
+    <cache_size>64KB</cache_size>
+    <mapping_type>direct</mapping_type>
+    <k></k>
+</configuration>
