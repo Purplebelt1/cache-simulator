@@ -15,7 +15,7 @@ def conversion_to_decimal(x):
     else:
         return ("Sizes must be in BT, KB, MB, or GB")
     
-    y = int(x[:-2]) * byte_level
+    y = int((x[:-2]) * byte_level)
 
     return (y)
 
