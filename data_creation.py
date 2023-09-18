@@ -46,11 +46,15 @@ class readItem:
 
 def data_creation(mem_len, number_of_reads):
     read_list = []
+    num_bits = str(int(math.log2(mem_len)))
+    bits_format = "0" + num_bits + "b"
     counter = 0
     while counter < number_of_reads:
         new_addr = random.randint(0,mem_len -1)
-        new_addr = format(new_addr, '0' + str(int(math.log2(mem_len)) + 'b'))
+        new_addr = format(new_addr, bits_format)
         read_object = readItem(new_addr)
         read_list.append(read_object)
+        counter += 1
+    print("DONE")
     return read_list
 

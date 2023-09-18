@@ -3,13 +3,13 @@ import data_creation
 
 def conversion_to_decimal(x):
     byte_level = x[-2:]
-    if byte_level == "BT":
+    if byte_level == "bt":
         byte_level = 1
-    elif byte_level == "KB":
+    elif byte_level == "kb":
         byte_level = 2**10
-    elif byte_level == "MB":
+    elif byte_level == "mb":
         byte_level = 2**20
-    elif byte_level == "GB":
+    elif byte_level == "gb":
         byte_level = 2**30
     else:
         ValueError("Sizes must be in BT, KB, MB, or GB")
@@ -29,10 +29,7 @@ def read_inputs():
 
     page_size = root.find('page_size').text.lower()
     page_size = conversion_to_decimal(page_size)
-    print(type(memory_size))
-    print(type(page_size))
-    print(memory_size)
-    print(page_size)
+
     if memory_size % page_size != 0:
         raise ValueError ("Page size not applicable to current memory size")
 
@@ -51,30 +48,35 @@ def read_inputs():
 
     k = root.find('k').text.lower()
 
-    if k is None:
-        pass
+    print(k)
 
+    if k == "null" or mapping_type != "set-associative":
+        if mapping_type == "direct":
+            k = cache_size/page_size
+        elif mapping_type == "associative":
+            k = 1
+        elif mapping_type == "set-associative":
+            ValueError("Can't set k to Null if set associative is mapping type.")
     else:
+        print(type(page_size))
+        print(type(cache_size))
         try:
             k = int(k)
         except:
             raise ValueError ("K must be an integer")
-
-        if mapping_type == 'direct' and k != 1:
-            k = 1
-            print ("Your k value had been overwritten to 1 due to your choice of direct mapping")
-
-        if cache_size/page_size < k:
+        print(type(k))
+        if cache_size/page_size < int(k):
             raise ValueError("k must be less than the number of lines")
-
-        if k is None and mapping_type == 'set_associative':
-            raise ValueError("K must have a value for set associative mapping")
         
     elements.append(k)  
 
 
 
     num_reads = root.find('num_reads').text.lower()
+    try:
+        num_reads = int(num_reads)
+    except:
+        ValueError("#Reads must be integer.")
 
     read_list = data_creation.data_creation(memory_size, num_reads)
 
