@@ -1,7 +1,6 @@
 import math
 import random
 
-read_list = []
 
 
 class readItem:
@@ -47,6 +46,7 @@ class readItem:
 
 
 def data_creation(mem_len, number_of_reads):
+    read_list = []
     counter = 0
     while counter < number_of_reads:
         new_addr = random.randint(0,mem_len -1)
