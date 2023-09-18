@@ -6,51 +6,81 @@ def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
 
     block_num = mem_size/page_size
     line_num = cache_size/page_size
-    set_size = line_num/k
+    set_size = k
+
+    set_num_tot = line_num/k
 
     len_addr = math.log2(mem_size)
     len_offset = math.log2(page_size)
     len_page_num = len_addr - len(len_offset)
-    len_tag = math.log2(k)
+    len_set_num = math.log2(set_num_tot)
 
-    cache = init_cache(k, set_size)
 
+    cache = init_cache(set_num_tot, set_size)
+
+    increment = 0
     for i in read_item_list:
-        set = find_set(cache, i,len_page_num, len_tag)
+        set_num = i.getAddr()[len_page_num-len_set_num:len_page_num]
+        set = find_set(cache, set_num)
+        line = find_line(set, i)
+        if line:
+            on_hit(i, line, increment)
+            read_item.setIsHit(True)
+        else:
+            on_miss(set)
+        increment += 1
 
 
-def find_set(cache, item, len_page_num, len_tag):
 
-    page_num = item.get_addr()[:len_page_num]
-    tag = item.get_addr()[len_page_num-len_tag:len_page_num]
-    offset = item.get_addr()[len_page_num:]
+def on_hit(request, line, time):
+    request.setIsHit(True)
+    was_hit = line.getName()
+    was_hit.setLastRead(time)
+    
+
+
+
+def on_miss(set):
+    pass
+
+
+
+def find_set(cache,set_num):
+
 
     sets = cache.getChildren()
     if len(sets) == 1:
         return sets[0]
-    set = None
 
     for i in sets:
-        if i.getName() == tag:
+        if i.getName() == set_num:
             set = i
             break
     
     return set
 
+def find_line(set, item):
+    line = None
+    for i in set.getChildren():
+        if isinstance(i, read_item):
+            if i.getAddr() == item.getAddr():
+                line = i
+    return line
+
 def binary(n, bit):
     return format(n, '0' + str(bit) + 'b')
 
-def init_cache(k, set_size):
+def init_cache(set_num_tot, set_size):
     cache = treeNode()
-    if k == 1:
+    if set_num_tot == 1:
         new_set = treeNode("set")
         cache.addChild(new_set)
         for j in range(set_size):
             line = treeNode(None)
             new_set.addChild(line)
         return cache
-    for i in range(k):
-        new_set = treeNode(binary(i, k-1))
+    for i in range(set_num_tot):
+        new_set = treeNode(binary(i, set_num_tot-1))
         cache.addChild(new_set)
         for j in range(set_size):
             line = treeNode(None)
