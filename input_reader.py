@@ -47,25 +47,29 @@ def read_inputs():
 
     k = root.find('k').text.lower()
 
-    try:
-        k = int(k)
-    except:
-        raise ValueError ("K must be an integer")
+    if k is None:
+        pass
 
-    if k is not None:
-        elements.append(k)
+    else:
+        try:
+            k = int(k)
+        except:
+            raise ValueError ("K must be an integer")
 
-    if mapping_type == 'direct' and k != 1:
-        k = 1
-        print ("Your k value had been overwritten to 1 due to your choice of direct mapping")
+        if k is not None:
+            elements.append(k)
 
-    if cache_size/page_size < k:
-        raise ValueError("k must be less than the number of lines")
+        if mapping_type == 'direct' and k != 1:
+            k = 1
+            print ("Your k value had been overwritten to 1 due to your choice of direct mapping")
 
-    if k is None and mapping_type == 'set_associative':
-        raise ValueError("K must have a value for set associative mapping")
+        if cache_size/page_size < k:
+            raise ValueError("k must be less than the number of lines")
 
-    elements.append(read_list)
+        if k is None and mapping_type == 'set_associative':
+            raise ValueError("K must have a value for set associative mapping")
+
+        elements.append(read_list)
 
     return elements
 
