@@ -1,8 +1,9 @@
 import math
 from data_creation import readItem
+from replacement_algorithms import first_in_first_out, least_recently_used
 
 
-def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
+def cache_sim(read_item_list, mem_size, page_size, cache_size, k, algorithm):
 
     block_num = mem_size/page_size
     line_num = cache_size/page_size
@@ -27,7 +28,7 @@ def cache_sim(read_item_list, mem_size, page_size, cache_size, k):
             on_hit(i, line, increment)
             i.setIsHit(True)
         else:
-            on_miss(set)
+            on_miss(set, algorithm, i)
         increment += 1
 
 
@@ -40,8 +41,13 @@ def on_hit(request, line, time):
 
 
 
-def on_miss(set):
-    pass
+def on_miss(set, algoritm, new):
+    match algoritm:
+        case "fifo":
+            index = first_in_first_out(set)
+        case "lru":
+            index = least_recently_used(set)
+    set.getChildren()[index].setName(new)
 
 
 
@@ -62,7 +68,7 @@ def find_set(cache,set_num):
 def find_line(set, item):
     line = None
     for i in set.getChildren():
-        if isinstance(i, read_item):
+        if isinstance(i, item):
             if i.getAddr() == item.getAddr():
                 line = i
     return line
