@@ -3,7 +3,6 @@ import data_creation
 
 def conversion_to_decimal(x):
     byte_level = x[-2:]
-    print(byte_level)
     if byte_level == "BT":
         byte_level = 1
     elif byte_level == "KB":
@@ -13,9 +12,9 @@ def conversion_to_decimal(x):
     elif byte_level == "GB":
         byte_level = 2**30
     else:
-        return ("Sizes must be in BT, KB, MB, or GB")
+        ValueError("Sizes must be in BT, KB, MB, or GB")
     
-    y = int((x[:-2]) * byte_level)
+    y = int(int(x[:-2]) * byte_level)
 
     return (y)
 
@@ -30,7 +29,10 @@ def read_inputs():
 
     page_size = root.find('page_size').text.lower()
     page_size = conversion_to_decimal(page_size)
-
+    print(type(memory_size))
+    print(type(page_size))
+    print(memory_size)
+    print(page_size)
     if memory_size % page_size != 0:
         raise ValueError ("Page size not applicable to current memory size")
 
