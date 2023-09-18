@@ -55,6 +55,5 @@ def data_creation(mem_len, number_of_reads):
         read_object = readItem(new_addr)
         read_list.append(read_object)
         counter += 1
-    print("DONE")
     return read_list
 
