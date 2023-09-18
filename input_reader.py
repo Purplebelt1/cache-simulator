@@ -48,16 +48,13 @@ def read_inputs():
     k = root.find('k').text.lower()
 
     if k is None:
-        pass
+        elements.append(k)
 
     else:
         try:
             k = int(k)
         except:
             raise ValueError ("K must be an integer")
-
-        if k is not None:
-            elements.append(k)
 
         if mapping_type == 'direct' and k != 1:
             k = 1
