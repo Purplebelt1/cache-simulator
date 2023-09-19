@@ -1,9 +1,9 @@
 <configuration>
-    <memory_size>128MB</memory_size>
+    <memory_size>512KB</memory_size>
     <page_size>4KB</page_size>
-    <cache_size>64KB</cache_size>
-    <mapping_type>direct</mapping_type>
-    <k>null</k>
+    <cache_size>256KB</cache_size>
+    <mapping_type>set-associative</mapping_type>
+    <k>4</k>
     <replacement_algorithm>fifo</replacement_algorithm>
-    <num_reads>10000</num_reads>
+    <num_reads>1000000</num_reads>
 </configuration>

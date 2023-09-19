@@ -1,3 +1,5 @@
+# File written by Cody Zahn
+
 import math
 import random
 
@@ -5,7 +7,7 @@ import random
 class readItem:
     def __init__(self, addr, replace_loc=None, is_hit=False):
         self.is_hit = is_hit
-        self.addr = int(addr)
+        self.addr = addr
         self.replace_loc = replace_loc
         self.last_read = 0
         self.time_added = 0

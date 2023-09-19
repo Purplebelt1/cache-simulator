@@ -1,2 +1,0 @@
-# cache-simulator
-Cache-Simulator
