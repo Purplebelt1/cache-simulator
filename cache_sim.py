@@ -75,7 +75,7 @@ def set_associative_map_cache(read_item_list, k, line_num, cache_size, len_page_
         set_children = search_set.getChildren()
 
         # Find the line index where the item is located (or None if not found)
-        line_idx = find_line(search_set, i)
+        line_idx = find_line(search_set, i, len_page_num)
 
         if line_idx is not None:
             # If the item is found in the cache (cache hit)
@@ -126,7 +126,7 @@ def associative_map_cache(read_item_list, line_num_tot, len_page_num, algorithm)
     # Iterate through the list of items to read from memory
     for i in read_item_list:
         # Find the line index where the item is located (or None if not found)
-        line_idx = find_line(cache, i)
+        line_idx = find_line(cache, i, len_page_num)
 
         if line_idx is not None:
             # If the item is found in the cache (cache hit)
@@ -196,9 +196,9 @@ def direct_map_cache(line_num_tot, read_item_list, len_page_num, len_line_num):
             i.setTimeAdded(increment)
         else:
             # If the cache line is not empty (cache hit)
-            search_value = search_data.getAddr()
+            search_value = search_data.getAddr()[:len_page_num]
 
-            if search_value == i.getAddr():
+            if search_value == i.getAddr()[:len_page_num]:
                 # If the stored address matches the requested address (cache hit), mark as hit
                 i.setIsHit(True)
                 search_data.setLastRead(increment)
@@ -213,7 +213,7 @@ def direct_map_cache(line_num_tot, read_item_list, len_page_num, len_line_num):
 
     return read_item_list
 
-def find_line(set, item):
+def find_line(set, item, len_page_num):
     idx = 0
 
     # Iterate through the lines within the specified set
@@ -223,7 +223,7 @@ def find_line(set, item):
         # Check if the line is not empty (contains data)
         if line_data is not None:
             # Compare the address of the data in the line with the address of the item
-            if line_data.getAddr() == item.getAddr():
+            if line_data.getAddr()[:len_page_num] == item.getAddr()[:len_page_num]:
                 # If the addresses match, return the index of the line (cache hit)
                 return idx
         idx += 1

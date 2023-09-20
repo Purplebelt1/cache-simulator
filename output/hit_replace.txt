@@ -2,7 +2,7 @@ Data Analysis
 ------------------------
 
 Hit Ratio:
-3.8e-05
+0.12526
 
 Replacement Count:
-999946
+874724
