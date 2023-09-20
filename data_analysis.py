@@ -1,4 +1,4 @@
-# File written by Monsour Sims
+# File written by Mansour Sims
 
 from output import append_to_txt_file, write_to_txt_file
 
